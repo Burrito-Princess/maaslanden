@@ -50,6 +50,7 @@
                 echo "<th>population</th>";
                 echo "<th>industry</th>";
                 echo "<th>player</th>";
+                echo "<th>surroundings</th>";
                 
             echo "</tr>";
             foreach($results as $result) {
@@ -64,6 +65,12 @@
                     };
                     "</td>";
                     echo "<td>" . $result["player_id"] . "</td>";
+                    echo "<td>";
+                    for ($i = 0; $i < count(json_decode($result["surroundings"])); $i++){
+                        echo json_decode($result["surroundings"])[$i];
+                        echo "<br>";
+                    };
+                    echo "</td>";
                 echo "</tr>";
             };
             echo "</table>";
