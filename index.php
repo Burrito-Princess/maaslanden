@@ -1,97 +1,138 @@
+<?php
+    $game_id = 1;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Maaslanden - dev-ross.com</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./../../src/output.css">
-    <?php 
-    // include "game.php";
-    // include "initialize.php";
-    include "db.php";
-    ?>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <style>
+        <?php
+        include './assets/style.css';
+        include './db.php';
+        ?></>
+    </style>
 </head>
+
 <body>
-<a href='http://dev-ross.com' class="text-2xl underline">Home</a><br>
-    <div>
-        <h1 class="text-4xl">Maaslanden</h1>
-        <p>Hi! This is my project Maaslanden. Maaslanden is a Board game inspired by Carcassonne and Settlers of Catan.</p>
-        <p>Gather resources by building land and cities. Connect to trade and expand your growing empire.</p>
-        <p>Use your phone to tap the cities and get information via the NFC tag that leads to this site.</p>
-        <br>
-</div>
-    <head>
+    <div id="flex-container">
+        <!-- explaination -->
+        <div class="main" id="explaination">
+            <h2>Maaslanden</h2>
+            <div id="explaination-text-background">
+                <p>
+                    This game is all about building a trade empire and collecting
+                    resources. The table to the right shows the state of game <?php echo $game_id?>. When more cities are 'initialized' the table will expand.
+                </p>
+            </div>
+            <div id="slide-show">
+                <button class="slide-button" onclick="plusDivs(-1)">
+                    &#10094;
+                </button>
+                <div id="slides">
+                    <div class="slide">
+                        <h3>Type</h3> <br>The type of a city decides from which range a population can be chosen. A capital has a higher range than a village and can only be chosen once.
+                    </div>
+                    <div class="slide">
+                        <h3>Population</h3> <br> <br>The population depends on what type, a captial has a higher range of randomly generated population than a village has.
+                    </div>
+                    <div class="slide">
+                        <h3>Industry</h3> <br> <br>The Industry is chosen from an array, this is completely random. You are also able to upgrade your city with a second industry.
+                    </div>
+                    <div class="slide">
+                        <h3>Surroundings</h3> <br> <br>Upon initialization you can choose which tiles surround a city. This can also be changed later as the board expands.
+                    </div>
+                    <div class="slide">
+                        <h3>Player</h3> <br> <br>Upon initialization you can choose who the city belongs to. This can be changed if done incorrectly.
+                    </div>
+                </div>
+                <button class="slide-button" onclick="plusDivs(1)">
+                    &#10095;
+                </button>
+            </div>
 
-        <?php 
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-          }
 
-          if (isset($_GET['game'])) {
-            $game = $_GET['game'];
-          } else {
-            $game = 1;
-          }
-          $sql = "SELECT * FROM game_$game";
-          $stmt = $conn->prepare($sql);
-          $stmt->execute();
-          $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-          echo "<table id='main-table'>";
-          echo "this is the table for game nr. $game";
-            echo "<tr>";
-                echo "<th>name</th>";
-                echo "<th>type</th>";
-                echo "<th>population</th>";
-                echo "<th>industry</th>";
-                echo "<th>player</th>";
-                echo "<th>surroundings</th>";
-                
-            echo "</tr>";
-            foreach($results as $result) {
-                echo "<tr>";
-                    echo "<td>" . $result["name"] . "</td>";
-                    echo "<td>" . $result["type"] . "</td>";
-                    echo "<td>" . $result["current_pop"] . "</td>";
-                    echo "<td>";
-                     for ($i = 0; $i < count(json_decode($result["industry"])); $i++){
-                        echo json_decode($result["industry"])[$i];
-                        echo "<br>";
-                    };
-                    "</td>";
-                    echo "<td>" . $result["player_id"] . "</td>";
-                    echo "<td>";
-                    for ($i = 0; $i < count(json_decode($result["surroundings"])); $i++){
-                        echo json_decode($result["surroundings"])[$i];
-                        echo "<br>";
-                    };
-                    echo "</td>";
-                echo "</tr>";
-            };
-            echo "</table>";
-        ?>
-        <div>
-            <br>
-            <h3 class="text-2xl">Name</h3>
-            <p>This name is picked randomly from the database, then removed to avoid getting the same name twice.</p>
-            <br>
-            <h3 class="text-2xl">Type</h3>
-            <p>The Type is also chosen semi-randomly, E.g. village has a higher chance of being picked, and capital can be picked once and is then removed from the database</p>
-            <br>
-            <h3 class="text-2xl">Population</h3> 
-            <p>The population is chosen semi-randomly as well, a village will have a random value from a lower range as a city.</p>
-            <br>
-            <h3 class="text-2xl">Industry</h3>
-            <p>The industry is chosen randomly from a list, and can appear more often.</p>
-            <br>
-            <h3 class="text-2xl">City ID</h3>
-            <p>The city ID is a unique number that is used to identify the city in the game selected, in this case game: 1</p>
+
+
         </div>
-    </head>
+        <!-- logo -->
+        <div class="main" id="logo">
+            <img src="./assets/img/logo_2.svg" id="logo-img" />
+        </div>
+        <!-- table -->
+
+
+        <div class="main" id="table-section">
+            
+            <?php
+            try {
+                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                // set the PDO error mode to exception
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                // echo "Connected successfully<br>";
+            } catch (PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
+            $sql = "SELECT * FROM game_$game_id limit 4";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            ?>
+            <table id="table">
+                <tr>
+                    <td><p>Name</p> </td>
+                    <?php
+                    foreach ($result as $city) {
+                        echo "<td><p>" . $city["name"] . "</p></td>";
+                    }
+                    ?>
+                </tr>
+                <tr>
+                    <td><p>Type </p></td>
+                    <?php
+                    foreach ($result as $city) {
+                        echo "<td><p>" . $city["type"] . "</p></td>";
+                    }
+                    ?>
+                </tr>
+                <tr>
+                    <td><p> Population </p></td>
+                    <?php
+                    foreach ($result as $city) {
+                        echo "<td><p>" . $city["current_pop"] . "</p></td>";
+                    }
+                    ?>
+                </tr>
+                <tr>
+                    <td><p> Industry </p></td>
+                    <?php
+                    foreach ($result as $city){
+                        $indu_decoded = json_decode($city["industry"]);
+                        echo "<td><p>";
+                        foreach ($indu_decoded as $indu){ 
+                            echo $indu;
+                        };
+                        echo "</p></td>";
+                    }
+                    
+                    ?>
+                </tr>
+            </table>
+            <?php
+                $table_width = 100 / (count($result) + 1) . "%";
+            ?>
+            <style>
+                #table td{
+                    width: <?php echo $table_width; ?>
+                }    
+            </style>
+        </div>
+    </div>
 </body>
+<script src="./assets/script.js"></script>
+
 </html>
