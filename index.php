@@ -114,11 +114,23 @@
                         $indu_decoded = json_decode($city["industry"]);
                         echo "<td><p>";
                         foreach ($indu_decoded as $indu){ 
-                            echo $indu;
+                            echo $indu . "<br>";
                         };
                         echo "</p></td>";
                     }
                     
+                    ?>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            Player
+                        </p>
+                    </td>
+                    <?php
+                    foreach ($result as $city) {
+                        echo "<td><p>" . $city["player_id"] . "</p></td>";
+                    }
                     ?>
                 </tr>
             </table>

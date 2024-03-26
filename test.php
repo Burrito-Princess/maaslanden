@@ -16,3 +16,11 @@
     echo "<br>";
     echo "<hr>";
     };
+
+
+    "fishing"=>"fishing",
+                        "nuclear"=>"nuclear",
+                        "farming"=>"farming",
+                        "tourism"=>"tourism",
+                        "forest"=>"forest",
+                        "mining"=>"mining"

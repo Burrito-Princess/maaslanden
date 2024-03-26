@@ -47,3 +47,9 @@
 		1.1. XP
 			if youve played a lot you can gain XP and rank yourself amoung your friends and the other players over the world
 
+
+
+## notes
+
+so i can make it instead that the industry for a city has a range of 2 rather then one. so if your industry is forest and theres
+no forest directly adjecent to the city, it has a range of 2 so it can also look beyond the directly adjecents
