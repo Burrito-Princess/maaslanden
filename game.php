@@ -23,7 +23,7 @@ try {
   $stmt = $conn->prepare($sql);
   $stmt->execute();
   $result = $stmt->fetch(PDO::FETCH_ASSOC);
-  echo $result["name"] . "<br>";
+  print_r($result["name"]);
 
 ?>
  
