@@ -43,6 +43,9 @@ try {
     include "../incorrect_key.php";
   }
 ?>
+<div id="img">
+        <img src="../assets/img/logo_2.svg" id="logo-img" />
+    </div>
   </body>
 </html>
  

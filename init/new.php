@@ -64,19 +64,19 @@ echo "<option value='4'>Player 4</option>";
 echo "</select>";
 echo "<hr>";
 // here you choose which tiles surround the city
-for ($i = 0; $i < 6; $i++){
-echo "<lable for='indu'> choose an industry for tile " . $i + 1 .":</lable>";
-echo "<br>";
-echo "<select name='indu_$i'>";
-echo "<option value='empty'>Empty</option>";
-echo "<option value='fish'>Fish (blue)</option>";
-echo "<option value='wood'>Wood (green)</option>";
-echo "<option value='grain'>Grain (yellow)</option>";
-echo "<option value='iron'>Iron (grey)</option>";
-echo "<option value='tourism'>Tourism (pink)</option>";
-echo "</select>";
-echo "<br>";
-echo "<hr>";
+for ($i = 0; $i < 6; $i++){?>
+<lable for='indu'> choose an industry for tile " . $i + 1 .":</lable>
+<br>
+<select id='select' name='indu_$i'>
+<option value='empty'>Empty</option>
+<option value='fish'>Fish (blue)</option>
+<option value='wood'>Wood (green)</option>
+<option value='grain'>Grain (yellow)</option>
+<option value='iron'>Iron (grey)</option>
+<option value='tourism'>Tourism (pink)</option>
+</select>
+<br>
+<hr><?php
 };
 echo "<input type='submit' value='Submit'>";
 if (isset($_POST['player'])){

@@ -1,3 +1,7 @@
+*{
+
+}
+
 table td {
     border: solid #f2f2f2;
     /* padding: 5px; */
@@ -6,6 +10,7 @@ table td {
 
 h1{
     text-align: center;
+    font-size: 10vw;
 }
 
 #content{
@@ -13,6 +18,12 @@ h1{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    border-radius: 10px;
+    /* padding: 10px; */
 }
 
 #logo-img{
@@ -30,4 +41,19 @@ body{
     background-color: #020202;
     color: #f2f2f2;
 }
+
+#table{
+    width: 100%;
+    max-width: 600px;
+}
+
+/* new.php */
+#select{
+    background-color: #f8333c;
+    border: 0px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
 

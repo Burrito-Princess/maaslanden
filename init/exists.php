@@ -7,8 +7,8 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
     <h1> This entry already exists</h1>
 
     <div id="content">
-        This is the city you're trying to initialize:
-        <table>
+        <p>This is the city you're trying to initialize:</p>
+        <table id="table">
             <tr>
                 <td>Name</td>
                 <td>Player ID</td>
@@ -22,13 +22,9 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 <td><?php echo $result["type"]?></td>
             </tr>
         </table>
-        <div>
-            If you've just started this game, don't forget to reset the game by tapping the reset card against your phone
-        </div>
+        <p>If you've just started this game, don't forget to reset the game by tapping the reset card against your phone</p>
     </div>
-    <div id="img">
-        <img src="../assets/img/logo_2.svg" id="logo-img" />
-    </div>
+    
     
 </body>
 <?php
