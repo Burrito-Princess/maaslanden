@@ -33,7 +33,6 @@ try {
     if(isset($data[0])) {// if the city exists
       include "exists.php";
     }
-  
     else
     {
       include "new.php";
